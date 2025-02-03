@@ -1,0 +1,60 @@
+export const KOLHAPURI = {
+    "phrases": [
+        { "translatedWord": "वांड", "english": "TOO GOOD " },
+        { "translatedWord": "भावा", "english": "DUDE " },
+        { "translatedWord": "काटा किर्र्र", "english": "AWESOME " },
+        { "translatedWord": "जाग्यावर पलटी", "english": "OH MY GOD" },
+        { "translatedWord": "नाद खुळा", "english": "BRILLIANT " },
+        { "translatedWord": "शुन्य मिनीटात आवर", "english": "BE QUICK " },
+        { "translatedWord": "रिक्षा फिरवू नकोस", "english": "DON’T WASTE TIME " },
+        { "translatedWord": "लई भारी", "english": "TOO GOOD " },
+        { "translatedWord": "जगात भारी", "english": "BEST " },
+        { "translatedWord": "नाद नाही करायचा", "english": "DON’T CHALLENGE " },
+        { "translatedWord": "निवांत", "english": "RELAXED " },
+        { "translatedWord": "चिरकुट", "english": "SIMPLE " },
+        { "translatedWord": "घुमिव की पिट्टा", "english": "Come on you can do it " },
+        { "translatedWord": "चहात दही ", "english": "STRANGE COMBINATION" },
+        { "translatedWord": "खटक्यावर बोट.. जाग्यावर पलटी ", "english": "OH MY GOD " },
+        { "translatedWord": "एकशरे काढ़लास काय ?", "english": "ARE YOU SICK ?" },
+        { "translatedWord": "आम्बा पाडला", "english": "FOOLED SOMEONE SUCCESSFULLY " },
+        { "translatedWord": "लई झाक", "english": "TOO GOOD " },
+        { "translatedWord": "हुडक आता बसून", "english": "DO IT ON YOUR OWN " },
+        { "translatedWord": "पुडया सोडू नकोस", "english": "DON’T LIE SO MUCH " },
+        { "translatedWord": "तानुन दे", "english": "GO TO SLEEP " },
+        { "translatedWord": "इस्कटलेला", "english": "STUPID " },
+        { "translatedWord": "नाद खुळा… गणपती पुळा", "english": "OH MY GOD " },
+        { "translatedWord": "डोक्यावर पडलायास का ???", "english": "HAVE U GONE MAD ??" },
+        { "translatedWord": "चक्कित जाळ", "english": "GREAT " },
+        { "translatedWord": "आबा घुमिव ", "english": "COME ON " },
+        { "translatedWord": "वडाप", "english": "CROWD " },
+        { "translatedWord": "काय मर्दा", "english": "HI DUDE " },
+        { "translatedWord": "तर्राट पळालास ब", "english": "YOU WERE TOO FAST " },
+        { "translatedWord": "काय गुढघ्यावर पडलास काय ??", "english": "ARE U MAD ??" },
+        { "translatedWord": "तरतरित", "english": "FRESH " },
+        { "translatedWord": "घसघषित", "english": "TOUGH " },
+        { "translatedWord": "शाळा करने", "english": "PLOT A SCHEME " },
+        { "translatedWord": "पेट्लास की", "english": "YOU ARE ON FIRE" },
+        { "translatedWord": "कीशात नाही आना, आणि मला बाजीराव म्हना..", "english": "YOU ARE NOT QUALIFIED ENOUGH TO DO IT" }
+    ]
+}
+
+export const MALVANI = {
+    "phrases": [
+        { "english": "How are you?", "translatedWord": "कासो असस रे तू?" },
+        { "english": "Are you alright?", "translatedWord": "कासो असस रे तू?" },
+        { "english": "I am fine.", "translatedWord": "में बारो अस्सय" },
+        { "english": "What are you doing?", "translatedWord": "तू काय करता?" },
+        { "english": "translatedWord is a sweet language.", "translatedWord": "मालवणी गोड भाषा असा।" },
+        { "english": "Do you know translatedWord?", "translatedWord": "तुका मालवणी येता?" },
+        { "english": "It's raining heavily here.", "translatedWord": "हाय खूब पावस पडता।" },
+        { "english": "It's flooded here.", "translatedWord": "हाय भावर इलोहा" },
+        { "english": "From where are you from?", "translatedWord": "खायसुन एलायस रे तू?" },
+        { "english": "Will this task be done?", "translatedWord": "काम पूरा होतला करे?" },
+        { "english": "Yes, it will.", "translatedWord": "होय होतला।" },
+        { "english": "I am going to the market.", "translatedWord": "मी/मिया बाजारय जातय।" },
+        { "english": "What do you (singular/multiple) want?", "translatedWord": "तुका/तुमका काय व्हया?" },
+        { "english": "Go there.", "translatedWord": "थयसर जा।" },
+        { "english": "Bring it.", "translatedWord": "व्हायता आन" },
+        { "english": "Go inside.", "translatedWord": "भुतुर जा" }
+    ]
+}
