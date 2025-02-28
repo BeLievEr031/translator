@@ -68,25 +68,14 @@ function History() {
         // console.log(data);
         const { data } = result;
         console.log(data);
-        setHistoryData([
-          ...data.histories,
-          ...data.histories,
-          ...data.histories,
-          ...data.histories,
-          ...data.histories,
-          ...data.histories,
-          ...data.histories,
-          ...data.histories,
-          ...data.histories,
-          ...data.histories,
-          ...data.histories,
-          ...data.histories,
-        ]);
+        setHistoryData([...data.histories]);
 
-        setPagination({
-          ...pagination,
-          totalPage: Math.ceil(data.totalCount / pagination.limit),
-        });
+        if (pagination.totalPage === 0) {
+          setPagination({
+            ...pagination,
+            totalPage: Math.ceil(data.totalCount / pagination.limit),
+          });
+        }
       } catch (error) {
         console.log(error);
       }

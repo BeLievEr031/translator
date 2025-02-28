@@ -9,6 +9,7 @@ import InputBoxes from "../components/InputBoxes";
 import Speakers from "../components/Speakers";
 import { createHistory, translateLanguage } from "../http/api";
 import { KOLHAPURI, MALVANI } from "../utils/constant";
+import toast, { Toaster } from "react-hot-toast";
 
 import loaderSrc from "../assets/loader.gif";
 const languages = [
@@ -23,7 +24,7 @@ const languages = [
   { value: "Marwari", prefix: "mwr" },
   { value: "Tamil", prefix: "ta" },
   { value: "Telugu", prefix: "te" },
-  { value: "agri", prefix: "agr" },
+  // { value: "agri", prefix: "agr" },
   { value: "malvni", prefix: "mlv" },
 ];
 
@@ -78,25 +79,58 @@ function Home() {
         Math.max(normalizedStr1.length, normalizedStr2.length)) *
       100;
 
+    console.log(percentage);
     return percentage;
   }
 
-  const hanldeCustomeLanguage = (languagae) => {
-    const result = languagae.phrases.filter((item) => {
-      const percentage = getMatchingPercentage(
-        item.english.toLowerCase().trim().split(" ").join(""),
-        inputData.fromWord.toLowerCase().trim().split(" ").join("")
-      );
+  const hanldeCustomeLanguage = async (language, from, to) => {
+    let result;
+    let ans = "";
+    if (from === "en" && (to === "kol" || to === "mlv")) {
+      result = language.phrases.filter((item) => {
+        const percentage = getMatchingPercentage(
+          item.english.toLowerCase().trim().split(" ").join(""),
+          inputData.fromWord.toLowerCase().trim().split(" ").join("")
+        );
 
-      if (percentage >= 75) {
-        return item.translatedWord;
-      }
-    });
+        setTranslatedAudio({
+          fromWordAdo: null,
+          toWordAdo: null,
+        });
+
+        if (percentage >= 75) {
+          ans = item.translatedWord;
+          return item.translatedWord;
+        }
+      });
+    } else {
+      result = language.phrases.filter((item) => {
+        const percentage = getMatchingPercentage(
+          inputData.fromWord.toLowerCase().trim().split(" ").join(""),
+          item.translatedWord.toLowerCase().trim().split(" ").join("")
+        );
+
+        setTranslatedAudio({
+          fromWordAdo: null,
+          toWordAdo: null,
+        });
+
+        if (percentage >= 75) {
+          ans = item.english;
+          return item.english;
+        }
+      });
+
+      console.log(result);
+    }
 
     if (result.length > 0) {
+      const historyData = await createHistory(user.id, inputData.fromWord, ans);
+
+      console.log(historyData);
       setInputData({
         ...inputData,
-        toWord: result[0].translatedWord,
+        toWord: ans,
       });
     } else {
       setInputData({
@@ -112,18 +146,49 @@ function Home() {
       langData.toLang === "" ||
       inputData.fromWord === ""
     ) {
+      toast.error("All fields required.");
       return;
     }
 
     try {
       if (
-        (langData.fromLang === "en" && langData.toLang === "mlv") ||
-        langData.toLang === "kol"
+        langData.fromLang !== "en" &&
+        (langData.toLang === "mlv" || langData.toLang === "kol")
       ) {
+        toast.error("Language not supported");
+        return;
+      }
+
+      if (
+        langData.toLang !== "en" &&
+        (langData.fromLang === "mlv" || langData.fromLang === "kol")
+      ) {
+        toast.error("Language not supported");
+        return;
+      }
+
+      if (
+        langData.fromLang === "en" &&
+        (langData.toLang === "mlv" || langData.toLang === "kol")
+      ) {
+        console.log("ateyhbhj");
+
         if (langData.toLang === "kol") {
-          hanldeCustomeLanguage(KOLHAPURI);
+          hanldeCustomeLanguage(KOLHAPURI, "en", "kol");
         } else {
-          hanldeCustomeLanguage(MALVANI);
+          hanldeCustomeLanguage(MALVANI, "en", "mlv");
+        }
+      } else if (
+        langData.toLang === "en" &&
+        (langData.fromLang === "mlv" || langData.fromLang === "kol")
+      ) {
+        console.log("i am running.");
+        console.log(langData.fromLang, langData.toLang);
+
+        if (langData.fromLang === "kol") {
+          hanldeCustomeLanguage(KOLHAPURI, "kol", "en");
+        } else {
+          hanldeCustomeLanguage(MALVANI, "mlv", "en");
         }
       } else {
         setLoading(true);
@@ -135,7 +200,7 @@ function Home() {
         );
 
         const { data } = result.data;
-        const historyData = createHistory(
+        const historyData = await createHistory(
           user.id,
           inputData.fromWord,
           data.translatedText
@@ -292,6 +357,8 @@ function Home() {
           </div>
         </div>
       )}
+
+      <Toaster />
     </div>
   );
 }
